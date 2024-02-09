@@ -5,39 +5,49 @@ body {
 }
 
 /* NABAR */
-.navbar-collapse .navbar-brand b span {
-  font-size: 2rem;
+.search-container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
 }
 
-.navbar-collapse .navbar-brand img {
-  height: 3rem;
-  width: auto;
+.con-logo{
+  display: flex;
 }
 
-.search {
-  margin: 0 2rem;
-  position: relative;
+.con-logo h3 {
+  margin: auto;
+  font-size: 20px;
 }
 
-form .form-control {
-  width: 60rem;
+.con-logo h3 b span {
+  font-size: 30px;
+}
+
+
+.logo {
+  width: 4rem;
+  height: auto; 
+  margin-right: 10px; 
+}
+
+.search-input {
+  border: 1px solid rgba(171, 171, 171, 1); 
+  padding: 10px;
+  width: 58rem;
   border-radius: 40px;
-  display: block;
-  padding: 9px 4px 9px 40px;
-  background: transparent url("../img/search.png") no-repeat 13px;
+  margin: 0 1rem;
 }
 
-form svg {
-  position: absolute;
-  /* left: 10px;  */
-  top: 50%;
-  transform: translateY(-70%);
+.search-input:focus {
+  outline: none; 
+  box-shadow: 0 0 2px rgba(171, 171, 171, 1);
 }
 
-form .garis-form {
-  border: 1px solid rgba(145, 145, 145, 0.433);
-  width: 60rem;
-  margin: 0.3rem 0;
+
+.search-container {
+  background-color: #ffffff; 
 }
 
 /* item */
@@ -46,27 +56,6 @@ form .garis-form {
 }
 .left {
   margin: 0 2rem;
-  overflow-y: scroll;
-}
-
-.left,
-.right {
-  height: calc(100vh - 90px);
-  position: sticky;
-}
-
-.left::-webkit-scrollbar {
-  display: none;
-}
-
-.right::-webkit-scrollbar {
-  display: none;
-}
-
-.left,
-.right {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 }
 
 .left h5 {
@@ -100,16 +89,6 @@ form .garis-form {
 
 .right {
   margin: 0 1rem;
-  overflow-y: scroll;
-}
-
-.right::-webkit-scrollbar {
-  display: none;
-}
-
-.right {
--ms-overflow-style: none; 
-scrollbar-width: none;
 }
 
 .card {
@@ -117,11 +96,16 @@ scrollbar-width: none;
 }
 .card-body {
   width: 15rem;
+  max-width: 15rem; 
 }
 
 .card-body .color1 {
   position: relative;
   transition: .3s ease;
+}
+
+.card-body .color1 .bg1, .card-body .color1 .bg2, .card-body .color1 .bg3, .card-body .color1 .bg4 {
+  width: 100%; 
 }
 
 .card-body .color1 .bg1 {
@@ -169,4 +153,28 @@ scrollbar-width: none;
 
 .text4{
   top: 1.7rem;
+}
+
+@media (max-width: 768px) {
+  .card-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .card {
+    flex: 0 0 calc(50% - 1rem); 
+    max-width: calc(50% - 1rem); 
+  }
+  
+  .card-body {
+    max-width: none; 
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    flex: 0 0 100%; 
+    max-width: 100%; 
+  }
 }

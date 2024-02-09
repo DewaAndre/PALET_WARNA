@@ -18,6 +18,14 @@ function fetchColorPalette() {
         updateCardColors('.b', data.data[1].colors);
         updateCardColors('.c', data.data[0].colors);
         updateCardColors('.d', data.data[1].colors);
+        updateCardColors('.e', data.data[1].colors);
+        updateCardColors('.f', data.data[1].colors);
+        updateCardColors('.g', data.data[1].colors);
+        updateCardColors('.z', data.data[1].colors);
+        updateCardColors('.i', data.data[1].colors);
+        updateCardColors('.j', data.data[1].colors);
+        updateCardColors('.k', data.data[1].colors);
+        updateCardColors('.l', data.data[1].colors);
       }
     })
     .catch(error => console.error('Error fetching color palette:', error));
