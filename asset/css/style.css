@@ -142,16 +142,17 @@ scrollbar-width: none;
   height: 48px;
 }
 
-.text-bg {
+.color1 .text-bg {
   position: absolute;
   background-color: rgba(145, 145, 145, 0.218);
   border-radius: 0px 6px 0px 0px;
   font-size: 14px;
-  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s;
 }
 
 .color1:hover .text-bg{
-  visibility: visible;
+  opacity: 1;
 }
 
 .text1 {

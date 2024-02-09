@@ -1,33 +1,39 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const cards = document.querySelectorAll('.card');
-    cards.forEach((card, index) => {
-        fetchColorPalette(card, index);
-    });
+  fetchColorPalette();
 });
 
-function fetchColorPalette(card, cardIndex) {
-    // Menggunakan warna dasar yang berbeda untuk setiap kartu
-    const baseColor = getBaseColor(cardIndex);
-    fetch(`https://www.thecolorapi.com/scheme?hex=${baseColor}&mode=monochrome&count=4`)
-    .then(response => response.json())
-    .then(data => updateColorPalette(card, data));
+function fetchColorPalette() {
+  fetch('http://128.199.167.159/v1/idc/color-palletes')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Asumsi menggunakan palet warna pertama dari data yang diterima untuk kartu pertama
+      // dan palet warna kedua untuk kartu kedua (sesuaikan ini berdasarkan data yang sebenarnya diterima)
+      if (data.data && data.data.length > 1) {
+        updateCardColors('.a', data.data[0].colors);
+        updateCardColors('.b', data.data[1].colors);
+        updateCardColors('.c', data.data[0].colors);
+        updateCardColors('.d', data.data[1].colors);
+      }
+    })
+    .catch(error => console.error('Error fetching color palette:', error));
 }
 
-function updateColorPalette(card, data) {
-    const colorDivs = card.querySelectorAll('.color1');
-    colorDivs.forEach((div, index) => {
-        if (data.colors[index]) {
-            const bgElement = div.querySelector(`.bg${index + 1}`);
-            bgElement.style.backgroundColor = data.colors[index].hex.value;
-
-            const textElement = div.querySelector(`.text${index + 1}`);
-            textElement.textContent = data.colors[index].hex.value;
-        }
-    });
+function updateCardColors(cardClassPrefix, colors) {
+  colors.forEach((color, index) => {
+    if (index < 4) { // Memastikan hanya memperbarui 4 elemen per kartu
+      const bgElement = document.querySelector(`${cardClassPrefix}${index + 1} .bg${index + 1}`);
+      const textElement = document.querySelector(`${cardClassPrefix}${index + 1} .text${index + 1}`);
+      if (bgElement && textElement) {
+        bgElement.style.backgroundColor = color;
+        textElement.textContent = color;
+        textElement.style.visibility = 'visible';
+      }
+    }
+  });
 }
 
-function getBaseColor(cardIndex) {
-    // Contoh sederhana, mengubah warna dasar berdasarkan indeks kartu
-    const baseColors = ['24B1E0', 'FF5733', 'DAF7A6', 'FFC300', 'C70039', '900C3F', '581845'];
-    return baseColors[cardIndex % baseColors.length];
-}
