@@ -162,11 +162,16 @@ body {
   top: 1rem;
 }
 
+.color-transition {
+  transition: background-color .3s ease;
+}
+
+
 @media screen and (max-width: 1212px) {
   .search-input{
     width: 44rem;
   }
-  
+
   .left h5 {
     font-size: 17px;
     display: flex;

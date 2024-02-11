@@ -45,3 +45,51 @@ function updateCardColors(cardClassPrefix, colors) {
   });
 }
 
+
+// 
+function updateCardColors(cardClassPrefix, colors) {
+  colors.forEach((color, index) => {
+    if (index < 4) { // Memastikan hanya memperbarui 4 elemen per kartu
+      const bgElement = document.querySelector(`${cardClassPrefix}${index + 1} .bg${index + 1}`);
+      const textElement = document.querySelector(`${cardClassPrefix}${index + 1} .text${index + 1}`);
+      if (bgElement && textElement) {
+        bgElement.classList.add('color-transition'); // Menambahkan kelas untuk transisi
+        bgElement.style.backgroundColor = color;
+        textElement.textContent = color;
+        textElement.style.visibility = 'visible';
+      }
+    }
+  });
+}
+
+
+
+// click light
+document.addEventListener('DOMContentLoaded', function() {
+  fetchColorPalette();
+
+  // Event listener untuk teks 'light'
+  document.getElementById('light').addEventListener('click', function(e) {
+    e.preventDefault(); // Mencegah perilaku default hyperlink
+    // Asumsi ID 5, 6, dan 7 mewakili palet warna terang
+    updateCardsWithLightPalette([5, 6, 7, 10, 11]); // Memanggil fungsi dengan array ID palet
+  });
+});
+
+function updateCardsWithLightPalette(paletteIds) {
+  fetch('http://128.199.167.159/v1/idc/color-palletes')
+    .then(response => response.json())
+    .then(data => {
+      paletteIds.forEach((paletteId, index) => {
+        const palette = data.data.find(p => p.id === paletteId);
+        if (palette) {
+          // Menggunakan class kartu yang berbeda berdasarkan indeks
+          // Misalnya, kartu pertama menggunakan warna dari palet ID pertama, dan seterusnya
+          // Pastikan class kartu (.a, .b, .c, ...) sesuai dengan struktur HTML Anda
+          const cardClass = String.fromCharCode(97 + index); // Mengubah indeks ke huruf (0 -> 'a', 1 -> 'b', ...)
+          updateCardColors('.' + cardClass, palette.colors);
+        }
+      });
+    })
+    .catch(error => console.error('Error fetching color palette:', error));
+}
