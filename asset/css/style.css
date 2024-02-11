@@ -6,10 +6,12 @@ body {
 
 /* NABAR */
 .search-container {
+  position: fixed;
   display: flex;
   align-items: center;
   padding: 10px;
   border-radius: 5px;
+  z-index: 1;
 }
 
 .con-logo {
@@ -51,6 +53,7 @@ body {
 /* item */
 .item-con {
   display: flex;
+  padding-top: 100px;
 }
 .left {
   margin: 0 2rem;
@@ -160,6 +163,10 @@ body {
 }
 
 @media screen and (max-width: 1212px) {
+  .search-input{
+    width: 44rem;
+  }
+  
   .left h5 {
     font-size: 17px;
     display: flex;

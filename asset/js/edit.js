@@ -1,16 +1,17 @@
-document.getElementById('colorPaletteForm').addEventListener('submit', function(e) {
+document.getElementById('editColorPaletteForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
+    const paletteId = document.getElementById('paletteId').value;
     const title = document.getElementById('title').value;
-    const colorsInput = document.getElementById('colors').value;
+    const colors = document.getElementById('colors').value;
 
     const data = {
         title: title,
-        colors: colorsInput
+        colors: colors
     };
 
-    fetch('http://128.199.167.159/v1/idc/color-pallete', {
-        method: 'POST',
+    fetch(`http://128.199.167.159/v1/idc/color-pallete/${paletteId}/edit`, {
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -24,12 +25,12 @@ document.getElementById('colorPaletteForm').addEventListener('submit', function(
     })
     .then(data => {
         console.log('Success:', data);
-        alert('Color palette added successfully!');
+        alert('Color palette updated successfully!');
 
-        document.getElementById('colorPaletteForm').reset();
+        document.getElementById('editColorPaletteForm').reset();
     })
     .catch((error) => {
         console.error('Error:', error);
-        alert('An error occurred while adding the color palette.');
+        alert('An error occurred while updating the color palette.');
     });
 });
