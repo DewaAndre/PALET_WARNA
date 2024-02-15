@@ -85,6 +85,67 @@ function updateCardColors(cardClassPrefix, colors) {
 }
 
 
+// Populer
+document.addEventListener('DOMContentLoaded', function() {
+  fetchColorPalette();
+
+  // Event listener untuk teks 'light'
+  document.getElementById('Populer').addEventListener('click', function(e) {
+    e.preventDefault(); // Mencegah perilaku default hyperlink
+    // Asumsi ID 5, 6, dan 7 mewakili palet warna terang
+    updateCardsWithLightPalette([20, 21, 22, 23, 24]); // Memanggil fungsi dengan array ID palet
+  });
+});
+
+function updateCardsWithLightPalette(paletteIds) {
+  fetch('http://128.199.167.159/v1/idc/color-palletes')
+    .then(response => response.json())
+    .then(data => {
+      paletteIds.forEach((paletteId, index) => {
+        const palette = data.data.find(p => p.id === paletteId);
+        if (palette) {
+          // Menggunakan class kartu yang berbeda berdasarkan indeks
+          // Misalnya, kartu pertama menggunakan warna dari palet ID pertama, dan seterusnya
+          // Pastikan class kartu (.a, .b, .c, ...) sesuai dengan struktur HTML Anda
+          const cardClass = String.fromCharCode(97 + index); // Mengubah indeks ke huruf (0 -> 'a', 1 -> 'b', ...)
+          updateCardColors('.' + cardClass, palette.colors);
+        }
+      });
+    })
+    .catch(error => console.error('Error fetching color palette:', error));
+}
+
+
+// Collection
+document.addEventListener('DOMContentLoaded', function() {
+  fetchColorPalette();
+
+  // Event listener untuk teks 'light'
+  document.getElementById('Collection').addEventListener('click', function(e) {
+    e.preventDefault(); // Mencegah perilaku default hyperlink
+    // Asumsi ID 5, 6, dan 7 mewakili palet warna terang
+    updateCardsWithLightPalette([12, 13, 14, 15, 16, 17, 18, 19, 20]); // Memanggil fungsi dengan array ID palet
+  });
+});
+
+function updateCardsWithLightPalette(paletteIds) {
+  fetch('http://128.199.167.159/v1/idc/color-palletes')
+    .then(response => response.json())
+    .then(data => {
+      paletteIds.forEach((paletteId, index) => {
+        const palette = data.data.find(p => p.id === paletteId);
+        if (palette) {
+          // Menggunakan class kartu yang berbeda berdasarkan indeks
+          // Misalnya, kartu pertama menggunakan warna dari palet ID pertama, dan seterusnya
+          // Pastikan class kartu (.a, .b, .c, ...) sesuai dengan struktur HTML Anda
+          const cardClass = String.fromCharCode(97 + index); // Mengubah indeks ke huruf (0 -> 'a', 1 -> 'b', ...)
+          updateCardColors('.' + cardClass, palette.colors);
+        }
+      });
+    })
+    .catch(error => console.error('Error fetching color palette:', error));
+}
+
 
 // light
 document.addEventListener('DOMContentLoaded', function() {
@@ -125,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('dark').addEventListener('click', function(e) {
     e.preventDefault(); // Mencegah perilaku default hyperlink
     // Asumsi ID 5, 6, dan 7 mewakili palet warna terang
-    updateCardsWithLightPalette([12, 13, 14, 15, 16]); // Memanggil fungsi dengan array ID palet
+    updateCardsWithLightPalette([12, 13, 14, 15, 16, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]); // Memanggil fungsi dengan array ID palet
   });
 });
 
