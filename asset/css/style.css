@@ -4,9 +4,12 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
+h1{
+  margin-bottom: 0;
+}
+
 /* NABAR */
 .search-container {
-  position: fixed;
   display: flex;
   align-items: center;
   padding: 10px;
@@ -50,11 +53,13 @@ body {
   background-color: #ffffff;
 }
 
+
+
 /* item */
 .item-con {
   display: flex;
-  padding-top: 100px;
 }
+
 .left {
   margin: 0 2rem;
 }
@@ -62,6 +67,7 @@ body {
 .left h5 {
   color: rgba(0, 0, 0, 0.83);
   padding: 5px 0;
+  cursor: pointer;
 }
 
 .left h5 svg {
@@ -86,7 +92,18 @@ body {
 
 .right {
   margin: 0 1rem;
-  max-width: 61rem;
+  max-width: 62rem;
+  max-height: 42rem;
+  overflow-y: scroll;
+}
+
+.right::-webkit-scrollbar {
+  display: none;
+}
+
+.right {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
 }
 
 .card-con {
@@ -176,6 +193,10 @@ body {
     font-size: 17px;
     display: flex;
   }
+
+  .right{
+    margin: 0rem;
+  }
 }
 
 @media screen and (max-width: 769px) {
@@ -197,6 +218,10 @@ body {
 
   .card-body {
     width: 13rem;
+  }
+
+  .right{
+    margin: 0 1rem;
   }
 }
 
